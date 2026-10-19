@@ -1,0 +1,12 @@
+# Compiled binaries
+*.o
+*.out
+my-program
+
+# Build directories
+build/
+cmake-build-*/
+
+# Editor and OS files
+.vscode/
+.DS_Store
