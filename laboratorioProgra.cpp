@@ -8,21 +8,19 @@ using namespace std;
     
 }*/
 
-const float DesbB = 0.50;
-const float DesbP = 1.00;
-const float biciMin = 0.10;
-const float patiMin = 0.20;
-const float descuentoEst = 0.80;
-const float maxCost = 12.00;
+const float DesbB = 0.50; //coste de desbloqueo bicis
+const float DesbP = 1.00; //coste de desbloqueo patinetes
+const float biciMin = 0.10; //coste de bici por minuto
+const float patiMin = 0.20; //coste de patinete por minuto
+const float descuentoEst = 0.80; //descuento estudiante
+const float maxCost = 12.00; //coste maximo
 
 const float recargoHora = 1.2;
 
-const int totalB = 10;
-const int totalP = 6;
+const int totalB = 10; //nº total de bicis
+const int totalP = 6; //nº total patinetes
 
 int main(){
-
-    
 
     int bicisUso = 0;
     int patinUso = 0;
@@ -48,7 +46,7 @@ int main(){
     cout << endl;
 
     if(opcion == 1){
-
+        //Estado de la estacion
         cout << "--- Estado de la estacion ---" << endl;
         cout << "Bicicletas disponibles: " << totalB - bicisUso << "/10" << endl;
         cout << "Patinetes disponibles: " << totalP - patinUso << "/6" << endl;
@@ -60,7 +58,7 @@ int main(){
         //filipe
     }
     else if(opcion == 3){
-        //int uso = alquilarV();
+        //Alquilar vehiculo
         char tipoV;
         cout << "--- Alquilar vehiculo ---" << endl;
         while(true){
