@@ -2,30 +2,31 @@
 
 using namespace std;
 
-/*int alquilarV(){
+float calcularTarifa(int desbloqueo, int euroMin);
 
-
-    
-}*/
-
-const float DesbB = 0.50; //coste de desbloqueo bicis
-const float DesbP = 1.00; //coste de desbloqueo patinetes
-const float biciMin = 0.10; //coste de bici por minuto
-const float patiMin = 0.20; //coste de patinete por minuto
 const float descuentoEst = 0.80; //descuento estudiante
 const float maxCost = 12.00; //coste maximo
-
 const float recargoHora = 1.2;
 
-const int totalB = 10; //nº total de bicis
-const int totalP = 6; //nº total patinetes
-
 int main(){
+
+    const float desbB = 0.50; //coste de desbloqueo bicis
+    const float desbP = 1.00; //coste de desbloqueo patinetes
+    const float biciMin = 0.10; //coste de bici por minuto
+    const float patiMin = 0.20; //coste de patinete por minuto
+   
+
+    const int totalB = 10; //nº total de bicis
+    const int totalP = 6; //nº total patinetes
 
     int bicisUso = 0;
     int patinUso = 0;
 
     int opcion;
+
+    char tipoV;
+
+    float tarifa = 0.0;
 
     cout << "Bienvenido/a a CampusRide - Estacion Pirineos" << endl;
     cout << "==============================" << endl;
@@ -58,11 +59,12 @@ int main(){
             //filipe
         }
         else if(opcion == 3){
+
             //Alquilar vehiculo
-            char tipoV;
             cout << "--- Alquilar vehiculo ---" << endl;
+
             while(true){
-                cout << "Tipo [B = bicicleta, P = patinete]: ";
+                cout << "Tipo [B = bicicleta, P = patinete, Q = salir]: ";
                 cin >> tipoV;
                 cout << endl;
                 if(tipoV == 'B'){
@@ -78,24 +80,78 @@ int main(){
                 }
                 else if(tipoV == 'P'){
                     if(totalP-patinUso != 0){
+
                         patinUso += 1;
                         cout << "Patinete alquilado. Patinetes disponibles:" << totalP - patinUso << "/6" << endl;
                         cout << endl;
                         break;
+
                     }
                     else{
+
                         cout << "No hay patinetes disponibles, disculpe las molestias." << endl;
                         break;
+
                     }
                 }
+                else if(tipoV == 'Q'){
+                    break;
+                }
                 else{
-                    cout << "Introduzca 'P' o 'B'." << endl;
+                    cout << "Introduzca 'P', 'B' o 'Q' (en mayuscula)." << endl;
                 }
             }
 
         }
         else if(opcion == 4){
 
+            //Devolver el vehiculo
+            cout << "--- Devolver vehiculo ---" << endl;
+
+            while(true){
+                cout << "Tipo [B = bicicleta, P = patinete, Q = salir]: ";
+                cin >> tipoV;
+                cout << endl;
+                if(tipoV == 'B'){
+                    if(bicisUso != 0){
+
+                        bicisUso -= 1;
+                        tarifa = calcularTarifa(desbB, biciMin);
+                        cout << "Total a pagar: " << tarifa << " EUR" << endl;
+                        cout << "Bicicletas disponibles: " << totalB - bicisUso <<"/10" << endl;
+                        break;
+                    }
+                    else{
+
+                        cout << "Todas las bicicletas ya estan en la estacion." << endl;
+                        
+                    }
+                }
+                else if(tipoV == 'P'){
+                    if(patinUso != 0){
+
+                        patinUso -= 1;
+                        tarifa = calcularTarifa(desbP, patiMin);
+                        cout << "Total a pagar: " << tarifa << " EUR" << endl;
+                        cout << "Patinetes disponibles: " << totalB - bicisUso <<"/10" << endl;
+                        break;
+
+                    }
+                    else{
+
+                        cout << "Todos los patinetes ya estan en la estacion." << endl;
+
+                    }
+                }
+                else if(tipoV == 'Q'){
+                    break;
+                }
+                else{
+
+                    cout << "Introduzca 'P', 'B' o 'Q' (en mayuscula)." << endl;
+
+                }
+            }
         }
         else if(opcion == 5){
 
