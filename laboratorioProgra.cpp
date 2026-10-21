@@ -2,9 +2,9 @@
 
 using namespace std;
 
-float calcularTarifa(int desbloqueo, int euroMin);
+float calcularTarifa(float desbloqueo, float euroMin);
 
-const float descuentoEst = 0.80; //descuento estudiante
+const float descuentoEst = 0.20; //descuento estudiante
 const float maxCost = 12.00; //coste maximo
 const float recargoHora = 1.2;
 
@@ -164,4 +164,54 @@ int main(){
         }
     
     }
+}
+
+float calcularTarifa(float desbloqueo, float euroMin){
+
+    int tiempo;
+    char estudiante;
+    float tarifa;
+    float descuento;
+
+    cout << "Duracion del viaje (numero entero de minutos): ";
+    cin >> tiempo;
+    cout << endl;
+
+    tarifa = tiempo * euroMin;
+
+    while(true){
+        cout << "Es estudiante? (S/N): ";
+        cin >> estudiante;
+        cout << endl;
+        if(estudiante == 'S'){
+
+            descuento = tarifa * descuentoEst;
+            break;
+
+        }
+        else if(estudiante == 'N'){
+
+            descuento = 0;
+            break;
+
+        }
+        else{
+            cout << "Introduzca 'S' o 'N' (en mayusculas)" << endl;
+        }
+    }
+
+    
+
+    cout << "Desbloqueo: " << desbloqueo << " EUR" << endl;
+    cout << "Tiempo: " << tiempo << " min x " << euroMin << " EUR = " << tarifa << " EUR" << endl;
+    cout << "Descuento estudiante (20%): -" << descuento << " EUR" << endl;
+
+    if(tarifa-descuento >= 12.00){
+
+        tarifa = 12.00;
+
+    }
+
+    return tarifa;
+
 }
