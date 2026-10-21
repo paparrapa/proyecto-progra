@@ -201,7 +201,12 @@ float calcularTarifa(float desbloqueo, float euroMin){
     cin >> tiempo;
     cout << endl;
 
-    tarifa = tiempo * euroMin;
+    if(tiempo > 60){
+        tarifa = (desbloqueo + tiempo * euroMin) * recargoHora;
+    }
+    else{
+        tarifa = desbloqueo + tiempo * euroMin;
+    }
 
     while(true){
         cout << "Es estudiante? (S/N): ";
