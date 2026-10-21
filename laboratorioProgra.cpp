@@ -20,13 +20,15 @@ int main(){
     const int totalP = 6; //nº total patinetes
 
     int bicisUso = 0;
+    int bicisUsoHist = 0;
     int patinUso = 0;
+    int patinUsoHist = 0;
 
     int opcion;
 
     char tipoV;
 
-    float tarifa = 0.0;
+    float totalTarifas = 0.0;
 
     cout << "Bienvenido/a a CampusRide - Estacion Pirineos" << endl;
     cout << "==============================" << endl;
@@ -34,6 +36,8 @@ int main(){
     cout << "==============================" << endl;
 
     while (true){
+
+        float tarifa = 0.0;
 
         cout << "1) Estado de la estacion" << endl;
         cout << "2) Simular tarifa" << endl;
@@ -69,7 +73,9 @@ int main(){
                 cout << endl;
                 if(tipoV == 'B'){
                     if(totalB-bicisUso != 0){
+
                         bicisUso += 1;
+                        bicisUsoHist += 1;
                         cout << "Bicicleta alquilada. Bicicletas disponibles:" << totalB - bicisUso << "/10" << endl;
                         break;
                     }
@@ -82,6 +88,7 @@ int main(){
                     if(totalP-patinUso != 0){
 
                         patinUso += 1;
+                        patinUsoHist += 1;
                         cout << "Patinete alquilado. Patinetes disponibles:" << totalP - patinUso << "/6" << endl;
                         cout << endl;
                         break;
@@ -117,6 +124,7 @@ int main(){
 
                         bicisUso -= 1;
                         tarifa = calcularTarifa(desbB, biciMin);
+                        totalTarifas += tarifa;
                         cout << "Total a pagar: " << tarifa << " EUR" << endl;
                         cout << "Bicicletas disponibles: " << totalB - bicisUso <<"/10" << endl;
                         break;
@@ -132,6 +140,7 @@ int main(){
 
                         patinUso -= 1;
                         tarifa = calcularTarifa(desbP, patiMin);
+                        totalTarifas += tarifa;
                         cout << "Total a pagar: " << tarifa << " EUR" << endl;
                         cout << "Patinetes disponibles: " << totalB - bicisUso <<"/10" << endl;
                         break;
@@ -154,6 +163,21 @@ int main(){
             }
         }
         else if(opcion == 5){
+            //Resumen de dia
+            cout << "--- Resumen de dia ---" << endl;
+            cout << "Viajes realizados: " << bicisUsoHist + patinUsoHist << endl;
+            cout << "Recaudacion total: " << totalTarifas << " EUR" << endl;
+            cout << "Importe medio por viaje: " << totalTarifas/(bicisUsoHist + patinUsoHist) << " EUR" << endl;
+
+            if(bicisUsoHist < patinUsoHist){
+                cout << "Tipo mas usado: patinete" << endl;
+            }
+            else if(bicisUsoHist > patinUsoHist){
+                cout << "Tipo mas usado: bicicleta" << endl;
+            }
+            else{
+                cout << "Ambos se utilizaron la misma cantidad de veces" << endl;
+            }
 
         }
         else if(opcion == 6){
