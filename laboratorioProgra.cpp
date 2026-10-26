@@ -39,6 +39,7 @@ int main(){
 
         float tarifa = 0.0;
 
+        cout << endl;
         cout << "1) Estado de la estacion" << endl;
         cout << "2) Simular tarifa" << endl;
         cout << "3) Alquilar vehiculo" << endl;
@@ -48,6 +49,7 @@ int main(){
 
         cout << "Eligue una opcion (1-6): ";
         cin >> opcion;
+        cout << endl;
         cout << endl;
 
         if(opcion == 1){
@@ -202,20 +204,22 @@ float calcularTarifa(float desbloqueo, float euroMin){
     cin >> tiempo;
     cout << endl;
 
+    int tiempoCalc = tiempo;
+
     do{
         if(count == 0){
-            tarifa = desbloqueo + (euroMin * tiempo);
+            tarifa = desbloqueo + (euroMin * tiempoCalc);
             count = 1;
-            tiempo -= 60;
+            tiempoCalc -= 60;
         }
         else{
 
-            tarifa += (euroMin * tiempo) * recargoHora;
-            tiempo -= 60;
+            tarifa += (euroMin * tiempoCalc) * recargoHora;
+            tiempoCalc -= 60;
 
         }
 
-    }while(tarifa > 60);
+    }while(tiempoCalc > 60);
 
     while(true){
         cout << "Es estudiante? (S/N): ";
