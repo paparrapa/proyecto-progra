@@ -196,17 +196,26 @@ float calcularTarifa(float desbloqueo, float euroMin){
     char estudiante;
     float tarifa;
     float descuento;
+    int count = 0;
 
     cout << "Duracion del viaje (numero entero de minutos): ";
     cin >> tiempo;
     cout << endl;
 
-    if(tiempo > 60){
-        tarifa = (desbloqueo + tiempo * euroMin) * recargoHora;
-    }
-    else{
-        tarifa = desbloqueo + tiempo * euroMin;
-    }
+    do{
+        if(count == 0){
+            tarifa = desbloqueo + (euroMin * tiempo);
+            count = 1;
+            tiempo -= 60;
+        }
+        else{
+
+            tarifa += (euroMin * tiempo) * recargoHora;
+            tiempo -= 60;
+
+        }
+
+    }while(tarifa > 60);
 
     while(true){
         cout << "Es estudiante? (S/N): ";
@@ -220,7 +229,7 @@ float calcularTarifa(float desbloqueo, float euroMin){
         }
         else if(estudiante == 'N'){
 
-            descuento = 0;
+            descuento = 0.0;
             break;
 
         }
