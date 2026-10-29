@@ -62,7 +62,38 @@ int main(){
 
         }
         else if(opcion == 2){
-            //filipe
+            
+            //Simular tarifa
+
+            while(true){
+                cout << "Tipo [B = bicicleta, P = patinete, Q = salir]: ";
+                cin >> tipoV;
+                cout << endl;
+                if(tipoV == 'B'){
+
+                    tarifa = calcularTarifa(desbB, biciMin);
+                    totalTarifas += tarifa;
+                    cout << "Total a pagar: " << tarifa << " EUR" << endl;
+                    break;
+
+                }
+                else if(tipoV == 'P'){
+
+                    tarifa = calcularTarifa(desbP, patiMin);
+                    totalTarifas += tarifa;
+                    cout << "Total a pagar: " << tarifa << " EUR" << endl;
+                    break;
+                }
+                else if(tipoV == 'Q'){
+                    break;
+                }
+                else{
+
+                    cout << "Introduzca 'P', 'B' o 'Q' (en mayuscula)." << endl;
+
+                }
+            }
+
         }
         else if(opcion == 3){
 
@@ -178,7 +209,7 @@ int main(){
                 cout << "Tipo mas usado: bicicleta" << endl;
             }
             else{
-                cout << "Ambos se utilizaron la misma cantidad de veces" << endl;
+                cout << "Tipo mas usado: Ambos se utilizaron la misma cantidad de veces" << endl;
             }
 
         }
